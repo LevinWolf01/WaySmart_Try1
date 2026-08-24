@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pr_waysmart'
+    'pr_waysmart',
+    'app_empresa_convenios',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'pr_waysmart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['pr_waysmart/templates'],
+        'DIRS': ['pr_waysmart/templates','app_empresa_convenios/templates/app_empresa_convenios'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

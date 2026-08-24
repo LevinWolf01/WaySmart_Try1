@@ -1,10 +1,9 @@
 from django.contrib import admin
-from django.http import HttpResponse
 from django.urls import path, include
-from .import views
-from pr_waysmart import views
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('waysmart/', views.fn_inicio)
+    path('waysmart/', include('app_empresa_convenios.urls')),
+    path('', RedirectView.as_view(url='/waysmart/', permanent=False)),
 ]
