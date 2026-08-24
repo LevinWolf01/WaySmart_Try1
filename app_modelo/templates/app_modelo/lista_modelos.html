@@ -1,142 +1,54 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Modelos</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 30px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 28px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-            padding: 12px;
-            text-align: center;
-            font-weight: 600;
-            border: none;
-        }
-
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            color: #444;
-            text-align: center;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-    </style>
+    <title>Gestión de Modelos</title>
+    <link rel="stylesheet" href="{% static 'app_modelo/estilos.css' %}">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Tabla Modelo</h1>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>2000</th>
-                    <th>2001</th>
-                    <th>2002</th>
-                    <th>2003</th>
-                    <th>2004</th>
-                    <th>2005</th>
-                    <th>2006</th>
-                    <th>2007</th>
-                    <th>2008</th>
-                    <th>2009</th>
-                    <th>2010</th>
-                    <th>2011</th>
-                    <th>2012</th>
-                    <th>2013</th>
-                    <th>2014</th>
-                    <th>2015</th>
-                    <th>2016</th>
-                    <th>2017</th>
-                    <th>2018</th>
-                    <th>2019</th>
-                    <th>2020</th>
-                    <th>2021</th>
-                    <th>2022</th>
-                    <th>2023</th>
-                    <th>2024</th>
-                    <th>2025</th>
-                    <th>2026</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for modelo in modelos %}
-                <tr>
-                    <td>{{ modelo.idModelo }}</td>
-                    <td>{{ modelo.anio_2000 }}</td>
-                    <td>{{ modelo.anio_2001 }}</td>
-                    <td>{{ modelo.anio_2002 }}</td>
-                    <td>{{ modelo.anio_2003 }}</td>
-                    <td>{{ modelo.anio_2004 }}</td>
-                    <td>{{ modelo.anio_2005 }}</td>
-                    <td>{{ modelo.anio_2006 }}</td>
-                    <td>{{ modelo.anio_2007 }}</td>
-                    <td>{{ modelo.anio_2008 }}</td>
-                    <td>{{ modelo.anio_2009 }}</td>
-                    <td>{{ modelo.anio_2010 }}</td>
-                    <td>{{ modelo.anio_2011 }}</td>
-                    <td>{{ modelo.anio_2012 }}</td>
-                    <td>{{ modelo.anio_2013 }}</td>
-                    <td>{{ modelo.anio_2014 }}</td>
-                    <td>{{ modelo.anio_2015 }}</td>
-                    <td>{{ modelo.anio_2016 }}</td>
-                    <td>{{ modelo.anio_2017 }}</td>
-                    <td>{{ modelo.anio_2018 }}</td>
-                    <td>{{ modelo.anio_2019 }}</td>
-                    <td>{{ modelo.anio_2020 }}</td>
-                    <td>{{ modelo.anio_2021 }}</td>
-                    <td>{{ modelo.anio_2022 }}</td>
-                    <td>{{ modelo.anio_2023 }}</td>
-                    <td>{{ modelo.anio_2024 }}</td>
-                    <td>{{ modelo.anio_2025 }}</td>
-                    <td>{{ modelo.anio_2026 }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3105/3105760.png" alt="Logo WaySmart">
+        <h2>WaySmart</h2>
     </div>
+    <div class="nav-links">
+        <a href="/waysmart/modelo/">🚗 Modelos</a>
+        <a href="/waysmart/repartidor/">🛵 Repartidores</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>🚗 Gestión de Modelos</h1>
+        <a href="{% url 'crear_modelo' %}" class="btn-primario">➕ Crear Nuevo Modelo</a>
+    </header>
+
+    <div class="grid-tarjetas">
+        {% for modelo in modelos %}
+        <div class="tarjeta" style="animation-delay: {{ forloop.counter0 }}00ms;">
+            <div class="tarjeta-cabecera">
+                <h2>🚙 {{ modelo.Marca }} {{ modelo.Nombre_Modelo }}</h2>
+            </div>
+            <div class="tarjeta-cuerpo">
+                <h3>Detalles del Vehículo:</h3>
+                <p><strong>🎨 Color:</strong> {{ modelo.Color }}</p>
+                <p><strong>📅 Año:</strong> {{ modelo.Año }}</p>
+                <p><strong>🔢 Placa:</strong> {{ modelo.Placa }}</p>
+            </div>
+            <div class="tarjeta-pie">
+                <a href="{% url 'editar_modelo' modelo.idModelo %}" class="btn-editar">✏️ Editar</a>
+                <a href="{% url 'eliminar_modelo' modelo.idModelo %}" class="btn-eliminar">🗑️ Eliminar</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="vacio">📦 No hay modelos registrados aún. ¡Crea el primero haciendo clic en el botón azul!</div>
+        {% endfor %}
+    </div>
+</div>
 
 </body>
 </html>

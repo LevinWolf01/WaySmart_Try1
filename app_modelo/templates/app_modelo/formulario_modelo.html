@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Modelo</title>
+    <link rel="stylesheet" href="{% static 'app_modelo/estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/4786/4786587.png" alt="Logo WaySmart">
+        <h2>WaySmart</h2>
+    </div>
+    <div class="nav-links">
+        <a href="/waysmart/modelo/">🚗 Modelos</a>
+        <a href="/waysmart/repartidor/">🛵 Repartidores</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor-form">
+    <h1>{% if modelo %}✏️ Editar Modelo{% else %}➕ Crear Nuevo Modelo{% endif %}</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="campo">
+            <label>🚗 Marca</label>
+            <input type="text" name="Marca" required placeholder="Ej: Toyota, Honda, Chevrolet" value="{% if modelo %}{{ modelo.Marca }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>🏷️ Nombre del Modelo</label>
+            <input type="text" name="Nombre_Modelo" required placeholder="Ej: Corolla, CBR, Aveo" value="{% if modelo %}{{ modelo.Nombre_Modelo }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>🎨 Color</label>
+            <input type="text" name="Color" required placeholder="Ej: Rojo, Azul, Negro" value="{% if modelo %}{{ modelo.Color }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>📅 Año</label>
+            <input type="text" name="Año" required placeholder="Ej: 2020, 2021, 2022" value="{% if modelo %}{{ modelo.Año }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>🔢 Placa</label>
+            <input type="text" name="Placa" required placeholder="Ej: ABC-123" value="{% if modelo %}{{ modelo.Placa }}{% endif %}">
+        </div>
+
+        <div class="acciones-form">
+            <button type="submit" class="btn-guardar">💾 Guardar</button>
+            <a href="{% url 'lista_modelos' %}" class="btn-cancelar">❌ Cancelar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

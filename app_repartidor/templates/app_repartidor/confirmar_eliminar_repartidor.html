@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Repartidor</title>
+    <link rel="stylesheet" href="{% static 'app_repartidor/estilos.css' %}">
+</head>
+<body>
+<div class="contenedor-alerta">
+    <h1>⚠️ ¿Estás seguro?</h1>
+    <p>Vas a eliminar al repartidor: <strong>{{ repartidor.Nombres }} {{ repartidor.Apellidos }}</strong>. Esta acción no se puede deshacer.</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn-eliminar-confirmar">🗑️ Sí, eliminar</button>
+        <a href="{% url 'lista_repartidores' %}" class="btn-cancelar">❌ Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

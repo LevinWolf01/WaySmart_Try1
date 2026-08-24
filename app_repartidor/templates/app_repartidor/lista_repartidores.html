@@ -1,114 +1,68 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Repartidores</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 30px;
-            width: 100%;
-            max-width: 1000px;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 28px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            border: none;
-        }
-
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
-            color: #444;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        /* Botón para agregar nuevo (si luego lo necesitas) */
-        .btn-nuevo {
-            display: inline-block;
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        .btn-nuevo:hover {
-            background-color: #218838;
-        }
-    </style>
+    <title>Gestión de Repartidores</title>
+    <link rel="stylesheet" href="{% static 'app_repartidor/estilos.css' %}">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Tabla Repartidor</h1>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Nro. Identificación</th>
-                    <th>Teléfono</th>
-                    <th>Observación Rechazo</th>
-                    <th>Fecha Validación</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for repartidor in repartidores %}
-                <tr>
-                    <td>{{ repartidor.idRepartidor }}</td>
-                    <td>{{ repartidor.Nombres }}</td>
-                    <td>{{ repartidor.Apellidos }}</td>
-                    <td>{{ repartidor.Nro_Identificacion }}</td>
-                    <td>{{ repartidor.Telefono }}</td>
-                    <td>{{ repartidor.Observacion_Rechazo }}</td>
-                    <td>{{ repartidor.Fecha_Validacion }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063822.png" alt="Logo WaySmart">
+        <h2>WaySmart</h2>
     </div>
+    <div class="nav-links">
+        <a href="/waysmart/modelo/">🚗 Modelos</a>
+        <a href="/waysmart/repartidor/">🛵 Repartidores</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>🛵 Gestión de Repartidores</h1>
+        <a href="{% url 'crear_repartidor' %}" class="btn-primario">➕ Crear Nuevo Repartidor</a>
+    </header>
+
+    <div class="grid-tarjetas">
+        {% for repartidor in repartidores %}
+        <div class="profile-card" style="animation-delay: {{ forloop.counter0 }}00ms;">
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-name">
+                    <h3>{{ repartidor.Nombres }} {{ repartidor.Apellidos }}</h3>
+                    <p>ID: {{ repartidor.idRepartidor }}</p>
+                </div>
+            </div>
+
+            <div class="profile-body">
+                <div class="profile-info">
+                    <span>🆔</span> <strong>Identificación:</strong> {{ repartidor.Nro_Identificacion }}
+                </div>
+                <div class="profile-info">
+                    <span>📞</span> <strong>Teléfono:</strong> {{ repartidor.Telefono }}
+                </div>
+                <div class="profile-info">
+                    <span>📋</span> <strong>Estado:</strong> {{ repartidor.Estado }}
+                </div>
+                <div class="profile-info">
+                    <span>📝</span> <strong>Observación:</strong> {{ repartidor.Observacion_Rechazo }}
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <a href="{% url 'editar_repartidor' repartidor.idRepartidor %}" class="btn-editar">✏️ Editar</a>
+                <a href="{% url 'eliminar_repartidor' repartidor.idRepartidor %}" class="btn-eliminar">🗑️ Eliminar</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="vacio">📦 No hay repartidores registrados aún. ¡Crea el primero haciendo clic en el botón azul!</div>
+        {% endfor %}
+    </div>
+</div>
 
 </body>
 </html>
