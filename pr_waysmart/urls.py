@@ -6,5 +6,8 @@ from pr_waysmart import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('waysmart/', views.fn_inicio)
-]
+    path('waysmart/', views.fn_inicio),
+    path('vehiculos-colores/', include('app_vehiculos_colores.urls')),
+    ]
+
+
