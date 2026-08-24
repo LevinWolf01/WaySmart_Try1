@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pagos del repartidor</title>
+
+    <link rel="stylesheet" href="{% static 'pagos_repartidor/css/pagos.css' %}">
+</head>
+<body>
+    <div class="container">
+
+        <h1>Pagos del repartidor</h1>
+
+        {% if pagos %}
+
+            {% for pago in pagos %}
+
+                <div class="tarjeta">
+
+                    <h2>Repartidor ID: {{ pago.id_Repartidor }}</h2>
+
+                    <div class="info">
+                         <h2>Repartidor ID: {{ pago.id_Repartidor }}</h2>
+                            <p>ID del pago: {{ pago.id_pagos }}</p>
+                            <p>Total generado: ${{ pago.monto_total_generado }}</p>
+                            <p>Comisión: ${{ pago.comision_plataforma }}</p>
+                            <p>Monto neto: ${{ pago.monto_neto }}</p>
+                            <p>Fecha: {{ pago.fecha_pago }}</p>
+                            <p>Estado: {{ pago.estado }}</p>
+                    </div>
+
+                    <div class="acciones">
+
+                        <!-- Nota: Ajusta los nombres de las URLs en tus rutas si usas detalle o eliminar -->
+                        <a href="#" class="btn">
+                            Ver detalle
+                        </a>
+
+                        <form
+                            action="#"
+                            method="post"
+                            style="display: inline;"
+                        >
+
+                            {% csrf_token %}
+
+                            <button type="submit" class="btn btn-eliminar">
+                                Eliminar
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="mensaje">
+                <p>No hay pagos registrados.</p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <h1>Lista de Pagos</h1>
+
+<div class="lista-pagos">
+    {% for pago in pagos %}
+        <article class="tarjeta">
+            <h2>Repartidor {{ pago.id_Repartidor }}</h2>
+
+            <div class="info">
+                <p>ID del pago: {{ pago.id_pagos }}</p>
+                <p>Total generado: ${{ pago.monto_total_generado }}</p>
+                <p>Comisión: ${{ pago.comision_plataforma }}</p>
+                <p>Monto neto: ${{ pago.monto_neto }}</p>
+                <p>Fecha: {{ pago.fecha_pago }}</p>
+                <span class="estado">{{ pago.estado }}</span>
+            </div>
+        </article>
+    {% empty %}
+        <p>No hay pagos registrados.</p>
+    {% endfor %}
+</div>
+<script src="{% static 'pagos_repartidor/js/pagos.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<body>
+    <div class="container">
+
+        <h1>Seguimientos de Geolocalización</h1>
+
+        {% if seguimientos %}
+
+            {% for seguimiento in seguimientos %}
+
+                <div class="tarjeta">
+
+                    <h2>Repartidor ID: {{ seguimiento.id_Repartidor }}</h2>
+
+                    <div class="info">
+
+                        <p>
+                            <strong>ID Seguimiento:</strong>
+                            {{ seguimiento.id_Seguimiento }}
+                        </p>
+
+                        <p>
+                            <strong>Latitud:</strong>
+                            {{ seguimiento.latitud }}
+                        </p>
+
+                        <p>
+                            <strong>Longitud:</strong>
+                            {{ seguimiento.longitud }}
+                        </p>
+
+                        <p>
+                            <strong>Velocidad:</strong>
+                            {{ seguimiento.velocidad }} km/h
+                        </p>
+
+                        <p>
+                            <strong>Fecha/Hora:</strong>
+                            {{ seguimiento.timestamp }}
+                        </p>
+
+                    </div>
+
+                    <div class="acciones">
+
+                        <!-- Nota: Ajusta los nombres de las URLs en tus rutas si usas detalle o eliminar -->
+                        <a href="#" class="btn">
+                            Ver detalle
+                        </a>
+
+                        <form
+                            action="#"
+                            method="post"
+                            style="display: inline;"
+                        >
+
+                            {% csrf_token %}
+
+                            <button type="submit" class="btn btn-eliminar">
+                                Eliminar
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="mensaje">
+                <p>No hay seguimientos disponibles.</p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <h1>Lista de seguimientos</h1>
+
+{% for seguimiento in listaseguimientos %}
+    <p>ID Repartidor: {{ seguimiento.id_Repartidor }}</p>
+    <p>Latitud: {{ seguimiento.latitud }}</p>
+    <p>Longitud: {{ seguimiento.longitud }}</p>
+    <p>Velocidad: {{ seguimiento.velocidad }} km/h</p>
+    <hr>
+{% empty %}
+    <p>No hay seguimientos registrados.</p>
+{% endfor %}
+</body>
+</html>
