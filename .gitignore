@@ -1,0 +1,21 @@
+# Entornos virtuales (cubre los nombres más comunes)
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Base de datos local de SQLite (recomendado ignorarla para evitar conflictos)
+db.sqlite3
+
+# Archivos del sistema y del editor
+.DS_Store
+.vscode/
+.idea/
