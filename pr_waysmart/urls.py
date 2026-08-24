@@ -6,5 +6,6 @@ from pr_waysmart import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('waysmart/', views.fn_inicio)
+    path('waysmart/', views.fn_inicio),
+    path('', include('app_rutas_asignaciones.urls')),
 ]
