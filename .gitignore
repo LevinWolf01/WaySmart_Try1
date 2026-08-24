@@ -1,4 +1,5 @@
 # Entornos virtuales (cubre los nombres más comunes)
+v_waysmart/
 venv/
 .venv/
 env/
