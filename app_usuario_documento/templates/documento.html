@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #222;
+            text-align: center;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #222;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Documentos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Tipo</th>
+                <th>Fecha Subida</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for documento in documentos %}
+            <tr>
+                <td>{{ documento.tipo_documento }}</td>
+                <td>{{ documento.url_archivo }}</td>
+                <td>{{ documento.fecha_subida }}</td>
+                <td>{{ documento.estado }}</td>
+                <td>{{ documento.usuario.email }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay documentos registrados</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
