@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pr_waysmart',
+    'app_empresa_convenios',
     'app_destinos_servicios'
 ]
 
@@ -61,7 +62,10 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'pr_waysmart' / 'templates',
             BASE_DIR / 'app_destinos_servicios' / 'templates',
+            'pr_waysmart/templates',
+            'app_empresa_convenios/templates/app_empresa_convenios'
         ],
+      
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
