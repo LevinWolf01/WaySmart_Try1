@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ES-es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar servicio</title>
+    <link rel="stylesheet" href="{% static 'app_destinos_servicios/servicios.css' %}">
+</head>
+<body>
+    <form class="servicio-form" method="post" action="{% url 'app_destinos_servicios:crear_servicio' %}">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <h2>Registro de Servicio</h2>
+
+  <div class="form-grid">
+    <!-- Clave Foránea / Identificadores -->
+    <div class="form-group">
+      <label for="empresa_id">ID Empresa</label>
+      <input type="number" id="empresa_id" name="empresa_id" placeholder="Ej. 10" required>
+    </div>
+
+    <div class="form-group">
+      <label for="codigo_servicio">Código del Servicio</label>
+      <input type="text" id="codigo_servicio" name="codigo_servicio" maxlength="50" placeholder="Ej. SERV-2026-001" required>
+    </div>
+
+    <!-- Detalles del Envíos -->
+    <div class="form-group">
+      <label for="tipo_envio">Tipo de Envío</label>
+      <input type="text" id="tipo_envio" name="tipo_envio" maxlength="100" placeholder="Ej. Express, Estándar, Carga">
+    </div>
+
+    <div class="form-group">
+      <label for="cantidad_entregas">Cantidad de Entregas</label>
+      <input type="number" id="cantidad_entregas" name="cantidad_entregas" min="1" placeholder="Ej. 5">
+    </div>
+
+    <!-- Ubicación y Fecha -->
+    <div class="form-group full-width">
+      <label for="direccion_recogidas">Dirección de Recogida</label>
+      <input type="text" id="direccion_recogidas" name="direccion_recogidas" maxlength="500" placeholder="Dirección completa del punto de recogida" required>
+    </div>
+
+    <div class="form-group">
+      <label for="fecha_deseada">Fecha Deseada</label>
+      <input type="datetime-local" id="fecha_deseada" name="fecha_deseada">
+    </div>
+
+    <!-- Estado (ENUM) -->
+    <div class="form-group">
+      <label for="estado">Estado del Servicio</label>
+      <select id="estado" name="estado">
+        <option value="Solicitado" selected>Solicitado</option>
+        <option value="En Proceso">En Proceso</option>
+        <option value="Completado">Completado</option>
+        <option value="Cancelado">Cancelado</option>
+      </select>
+    </div>
+
+    <!-- Observaciones -->
+    <div class="form-group full-width">
+      <label for="observaciones">Observaciones</label>
+      <textarea id="observaciones" name="observaciones" rows="3" placeholder="Instrucciones especiales o detalles del paquete..."></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="btn-submit">Guardar Servicio</button>
+  <a href="{% url 'app_destinos_servicios:lista_servicios' %}">Ver servicios guardados</a>
+</form>
+</body>
+</html>
