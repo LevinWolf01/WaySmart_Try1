@@ -1,11 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido</title>
+    <title>Bienvenido a WaySmart</title>
+    <link rel="stylesheet" href="{% static 'app_PagosEntrega_TipoPago/css/style.css' %}">
 </head>
 <body>
-    <h1> Bienvenido a WaySmart</h1>
+    <div class="container" style="text-align: center; margin-top: 50px;">
+        <h1>¡Bienvenido a WaySmart!</h1>
+        <p>Sistema de gestión y ruteo inteligente.</p>
+        
+        <!-- Enlace o botón para ir directamente al módulo de pagos -->
+        <a href="{% url 'pagos_index' %}" class="btn btn-waysmart" style="display: inline-block; margin-top: 20px; text-decoration: none;">
+            Ir al Módulo de Pagos
+        </a>
+    </div>
 </body>
 </html>
