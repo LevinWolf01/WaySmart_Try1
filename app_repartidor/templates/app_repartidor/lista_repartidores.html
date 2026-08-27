@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Repartidores</title>
+    <link rel="stylesheet" href="{% static 'app_repartidor/estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063822.png" alt="Logo WaySmart">
+        <h2>WaySmart</h2>
+    </div>
+    <div class="nav-links">
+        <a href="/waysmart/modelo/">🚗 Modelos</a>
+        <a href="/waysmart/repartidor/">🛵 Repartidores</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>🛵 Gestión de Repartidores</h1>
+        <a href="{% url 'crear_repartidor' %}" class="btn-primario">➕ Crear Nuevo Repartidor</a>
+    </header>
+
+    <div class="grid-tarjetas">
+        {% for repartidor in repartidores %}
+        <div class="profile-card" style="animation-delay: {{ forloop.counter0 }}00ms;">
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-name">
+                    <h3>{{ repartidor.Nombres }} {{ repartidor.Apellidos }}</h3>
+                    <p>ID: {{ repartidor.idRepartidor }}</p>
+                </div>
+            </div>
+
+            <div class="profile-body">
+                <div class="profile-info">
+                    <span>🆔</span> <strong>Identificación:</strong> {{ repartidor.Nro_Identificacion }}
+                </div>
+                <div class="profile-info">
+                    <span>📞</span> <strong>Teléfono:</strong> {{ repartidor.Telefono }}
+                </div>
+                <div class="profile-info">
+                    <span>📋</span> <strong>Estado:</strong> {{ repartidor.Estado }}
+                </div>
+                <div class="profile-info">
+                    <span>📝</span> <strong>Observación:</strong> {{ repartidor.Observacion_Rechazo }}
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <a href="{% url 'editar_repartidor' repartidor.idRepartidor %}" class="btn-editar">✏️ Editar</a>
+                <a href="{% url 'eliminar_repartidor' repartidor.idRepartidor %}" class="btn-eliminar">🗑️ Eliminar</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="vacio">📦 No hay repartidores registrados aún. ¡Crea el primero haciendo clic en el botón azul!</div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

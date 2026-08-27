@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Modelos</title>
+    <link rel="stylesheet" href="{% static 'app_modelo/estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3105/3105760.png" alt="Logo WaySmart">
+        <h2>WaySmart</h2>
+    </div>
+    <div class="nav-links">
+        <a href="/waysmart/modelo/">🚗 Modelos</a>
+        <a href="/waysmart/repartidor/">🛵 Repartidores</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>🚗 Gestión de Modelos</h1>
+        <a href="{% url 'crear_modelo' %}" class="btn-primario">➕ Crear Nuevo Modelo</a>
+    </header>
+
+    <div class="grid-tarjetas">
+        {% for modelo in modelos %}
+        <div class="tarjeta" style="animation-delay: {{ forloop.counter0 }}00ms;">
+            <div class="tarjeta-cabecera">
+                <h2>🚙 {{ modelo.Marca }} {{ modelo.Nombre_Modelo }}</h2>
+            </div>
+            <div class="tarjeta-cuerpo">
+                <h3>Detalles del Vehículo:</h3>
+                <p><strong>🎨 Color:</strong> {{ modelo.Color }}</p>
+                <p><strong>📅 Año:</strong> {{ modelo.Año }}</p>
+                <p><strong>🔢 Placa:</strong> {{ modelo.Placa }}</p>
+            </div>
+            <div class="tarjeta-pie">
+                <a href="{% url 'editar_modelo' modelo.idModelo %}" class="btn-editar">✏️ Editar</a>
+                <a href="{% url 'eliminar_modelo' modelo.idModelo %}" class="btn-eliminar">🗑️ Eliminar</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="vacio">📦 No hay modelos registrados aún. ¡Crea el primero haciendo clic en el botón azul!</div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

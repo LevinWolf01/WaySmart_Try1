@@ -1,0 +1,365 @@
+/* =========================================
+   DISEÑO MODERNO WAYSMART - REPARTIDORES
+   ========================================= */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0f2fe, #ffffff, #bbdefb);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== BARRA DE NAVEGACIÓN ===== */
+.navbar {
+    background: linear-gradient(90deg, #0d47a1, #1565c0, #42a5f5);
+    padding: 15px 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar .logo img {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 12px;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo h2 {
+    font-size: 28px;
+    margin: 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #bbdefb;
+    transform: translateY(-3px);
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.contenedor {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    padding: 35px;
+    max-width: 1200px;
+    margin: 30px auto;
+    animation: slideUp 0.8s ease-out;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== CABECERA ===== */
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 4px solid #0d47a1;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+h1 {
+    color: #0d47a1;
+    margin: 0;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 900;
+}
+
+/* ===== BOTONES ===== */
+.btn-primario, .btn-editar, .btn-eliminar, .btn-guardar, .btn-cancelar, .btn-eliminar-confirmar {
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primario {
+    background: linear-gradient(90deg, #0d47a1, #1565c0);
+}
+.btn-primario:hover {
+    background: linear-gradient(90deg, #1565c0, #0d47a1);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(13, 71, 161, 0.4);
+}
+
+/* ===== TARJETAS HORIZONTALES ===== */
+.grid-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.profile-card {
+    background: linear-gradient(145deg, #ffffff, #f0f7ff);
+    border-radius: 24px;
+    border: 2px solid #e3f2fd;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: cardEntrance 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes cardEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-card:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(13, 71, 161, 0.2);
+    border-color: #0d47a1;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid #e3f2fd;
+    padding-bottom: 15px;
+}
+
+.profile-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0d47a1, #42a5f5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(13, 71, 161, 0.3);
+}
+
+.profile-name h3 {
+    margin: 0;
+    color: #0d47a1;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-name p {
+    margin: 5px 0 0;
+    color: #888;
+    font-size: 13px;
+}
+
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #555;
+    padding: 8px;
+    background: rgba(227, 242, 253, 0.5);
+    border-radius: 10px;
+}
+
+.profile-info strong {
+    color: #0d47a1;
+}
+
+.profile-info span {
+    font-size: 20px;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 15px;
+}
+
+.profile-actions .btn-editar,
+.profile-actions .btn-eliminar {
+    flex: 1;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.btn-editar {
+    background: linear-gradient(90deg, #1976d2, #42a5f5);
+}
+.btn-editar:hover {
+    background: linear-gradient(90deg, #1565c0, #1976d2);
+    transform: scale(1.05);
+}
+
+.btn-eliminar {
+    background: linear-gradient(90deg, #c62828, #e53935);
+}
+.btn-eliminar:hover {
+    background: linear-gradient(90deg, #b71c1c, #c62828);
+    transform: scale(1.05);
+}
+
+/* ===== VACÍO ===== */
+.vacio {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    padding: 50px;
+    font-style: italic;
+    font-size: 20px;
+}
+
+/* ===== FORMULARIO ===== */
+.contenedor-form, .contenedor-alerta {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    max-width: 800px;
+    margin: 30px auto;
+    animation: slideUp 0.8s ease-out;
+}
+
+.contenedor-form h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.campo label {
+    font-weight: bold;
+    color: #0d47a1;
+    margin-bottom: 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.campo input, .campo textarea {
+    padding: 12px;
+    border: 2px solid #e3f2fd;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f9fbfd;
+}
+
+.campo input:focus, .campo textarea:focus {
+    border-color: #0d47a1;
+    outline: none;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(13, 71, 161, 0.2);
+}
+
+.acciones-form {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.btn-guardar {
+    background: linear-gradient(90deg, #2e7d32, #43a047);
+}
+.btn-guardar:hover {
+    background: linear-gradient(90deg, #1b5e20, #2e7d32);
+    transform: scale(1.05);
+}
+
+.btn-cancelar {
+    background: linear-gradient(90deg, #757575, #9e9e9e);
+}
+.btn-cancelar:hover {
+    background: linear-gradient(90deg, #424242, #757575);
+    transform: scale(1.05);
+}
+
+.btn-eliminar-confirmar {
+    background: linear-gradient(90deg, #d32f2f, #e53935);
+    font-size: 16px;
+    padding: 14px 24px;
+}
+
+.contenedor-alerta {
+    text-align: center;
+}
+
+.contenedor-alerta p {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 30px;
+}

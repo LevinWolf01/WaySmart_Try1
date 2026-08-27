@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.shortcuts import redirect
 from pr_waysmart import views
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,4 +15,6 @@ urlpatterns = [
     path('waysmart/', include('app_empresa_convenios.urls')), 
     path('waysmart/', include('app_PagosEntrega_TipoPago.urls')),
     path('waysmart/', include('app_rutas_asignaciones.urls')),
+    path('waysmart/modelo/', include('app_modelo.urls')),
+    path('waysmart/repartidor/', include('app_repartidor.urls')),
 ]
