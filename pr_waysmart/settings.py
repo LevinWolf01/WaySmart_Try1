@@ -37,14 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #Apps del Proyecto:
     'pr_waysmart',
     'app_empresa_convenios',
     'app_destinos_servicios',
     'app_PagosEntrega_TipoPago',
-]
-
-DEFAULT_AUTO_FIELD = ['django.db.models.BigAutoField'
-    'app_rutas_asignaciones',
+    'app_rutas_asignaciones',   
 ]
 
 MIDDLEWARE = [
