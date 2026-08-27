@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Repartidor</title>
+    <link rel="stylesheet" href="{% static 'app_repartidor/estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/4786/4786587.png" alt="Logo WaySmart">
+        <h2>WaySmart</h2>
+    </div>
+    <div class="nav-links">
+        <a href="/waysmart/modelo/">🚗 Modelos</a>
+        <a href="/waysmart/repartidor/">🛵 Repartidores</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor-form">
+    <h1>{% if repartidor %}✏️ Editar Repartidor{% else %}➕ Crear Nuevo Repartidor{% endif %}</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="campo">
+            <label>👤 Nombres</label>
+            <input type="text" name="Nombres" required placeholder="Ej: Juan David" value="{% if repartidor %}{{ repartidor.Nombres }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>👤 Apellidos</label>
+            <input type="text" name="Apellidos" required placeholder="Ej: Pérez Gómez" value="{% if repartidor %}{{ repartidor.Apellidos }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>🆔 Nro. Identificación</label>
+            <input type="text" name="Nro_Identificacion" required placeholder="Ej: 1234567890" value="{% if repartidor %}{{ repartidor.Nro_Identificacion }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>📞 Teléfono</label>
+            <input type="text" name="Telefono" required placeholder="Ej: 3001234567" value="{% if repartidor %}{{ repartidor.Telefono }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>📋 Estado</label>
+            <input type="text" name="Estado" required placeholder="Ej: Activo, Pendiente" value="{% if repartidor %}{{ repartidor.Estado }}{% endif %}">
+        </div>
+
+        <div class="campo">
+            <label>📝 Observación (Opcional)</label>
+            <textarea name="Observacion_Rechazo" rows="3" placeholder="Ej: Documento pendiente de validación">{% if repartidor %}{{ repartidor.Observacion_Rechazo }}{% endif %}</textarea>
+        </div>
+
+        <div class="acciones-form">
+            <button type="submit" class="btn-guardar">💾 Guardar</button>
+            <a href="{% url 'lista_repartidores' %}" class="btn-cancelar">❌ Cancelar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

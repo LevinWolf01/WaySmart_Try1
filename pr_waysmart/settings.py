@@ -37,13 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     #Apps del Proyecto:
     'pr_waysmart',
     'app_empresa_convenios',
     'app_destinos_servicios',
     'app_PagosEntrega_TipoPago',
     'app_rutas_asignaciones',   
+    'app_modelo',
+    'app_repartidor',
+
 ]
 
 MIDDLEWARE = [
@@ -68,6 +71,8 @@ TEMPLATES = [
             'app_empresa_convenios/templates/app_empresa_convenios',
             'app_PagosEntrega_TipoPago/templates',
             'app_rutas_asignaciones/templates',
+            'app_modelo/templates',
+            'app_repartidor/templates',
         ],
       
         'APP_DIRS': True,
@@ -151,3 +156,9 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+
+STATICFILES_DIRS = [
+    'app_modelo/static',
+    'app_repartidor/static',
+]
