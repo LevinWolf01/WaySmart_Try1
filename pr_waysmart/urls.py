@@ -13,4 +13,5 @@ urlpatterns = [
     path('waysmart/', include('app_destinos_servicios.urls')),
     path('waysmart/', include('app_empresa_convenios.urls')), 
     path('waysmart/', include('app_PagosEntrega_TipoPago.urls')),
+    path('waysmart/', include('app_rutas_asignaciones.urls')),
 ]

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutas - WaySmart</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7fb; margin: 0; color: #222; }
+        header { background-color: #12355b; color: white; padding: 20px; text-align: center; }
+        .contenedor { width: 90%; max-width: 1100px; margin: 30px auto; background-color: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h2 { color: #12355b; }
+        form { background-color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .campo { display: flex; flex-direction: column; }
+        label { font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #475569; }
+        input, select { padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; }
+        .checkbox-container { display: flex; align-items: center; gap: 10px; margin-top: 25px; }
+        button { grid-column: 1 / -1; background-color: #059669; color: white; border: none; padding: 10px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        button:hover { background-color: #047857; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { background-color: #1d6fa5; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; }
+        tr:hover { background-color: #f0f6fc; }
+        .boton { display: inline-block; margin-top: 20px; padding: 10px 18px; background-color: #12355b; color: white; text-decoration: none; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>WaySmart - Módulo de Rutas</h1>
+    </header>
+
+    <div class="contenedor">
+        <h2>Ingresar Nueva Ruta</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="campo">
+                <label>Asignación Asociada:</label>
+                <select name="asignacion_id" required>
+                    <option value="">Seleccione una Asignación...</option>
+                    {% for asig in asignaciones %}
+                        <option value="{{ asig.asignacion_id }}">Asignación #{{ asig.asignacion_id }} (Repartidor {{ asig.repartidor_id }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="campo">
+                <label>Tipo de Ruta:</label>
+                <input type="text" name="tipo_ruta" placeholder="Ej: Más Rápida" required>
+            </div>
+            <div class="campo">
+                <label>Tiempo Estimado (Minutos):</label>
+                <input type="number" name="tiempo_estimado_min" required>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" name="seleccionada" id="seleccionada">
+                <label for="seleccionada" style="margin: 0;">¿Ruta Seleccionada?</label>
+            </div>
+            <button type="submit">Guardar Ruta</button>
+        </form>
+
+        <h2>Datos Ingresados (Rutas)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Ruta</th>
+                    <th>ID Asignación</th>
+                    <th>Tipo Ruta</th>
+                    <th>Tiempo (Min)</th>
+                    <th>Seleccionada</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ruta in rutas %}
+                <tr>
+                    <td>{{ ruta.idrutas }}</td>
+                    <td>{{ ruta.asignacion.asignacion_id }}</td>
+                    <td>{{ ruta.tipo_ruta }}</td>
+                    <td>{{ ruta.tiempo_estimado_min }}</td>
+                    <td>{% if ruta.seleccionada %}Sí{% else %}No{% endif %}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" style="text-align: center;">No hay rutas registradas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/waysmart/asignaciones/" class="boton">Ir a Módulo de Asignaciones</a>
+    </div>
+</body>
+</html>

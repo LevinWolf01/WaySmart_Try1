@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'app_PagosEntrega_TipoPago',
 ]
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = ['django.db.models.BigAutoField'
+    'app_rutas_asignaciones',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,7 +67,8 @@ TEMPLATES = [
             BASE_DIR / 'app_destinos_servicios' / 'templates',
             'pr_waysmart/templates',
             'app_empresa_convenios/templates/app_empresa_convenios',
-            'app_PagosEntrega_TipoPago/templates'
+            'app_PagosEntrega_TipoPago/templates',
+            'app_rutas_asignaciones/templates',
         ],
       
         'APP_DIRS': True,
