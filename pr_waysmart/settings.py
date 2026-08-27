@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #Apps del Proyecto:
     'pr_waysmart',
     'app_empresa_convenios',
     'app_destinos_servicios',
     'app_PagosEntrega_TipoPago',
+    'app_rutas_asignaciones',   
 ]
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,7 +66,8 @@ TEMPLATES = [
             BASE_DIR / 'app_destinos_servicios' / 'templates',
             'pr_waysmart/templates',
             'app_empresa_convenios/templates/app_empresa_convenios',
-            'app_PagosEntrega_TipoPago/templates'
+            'app_PagosEntrega_TipoPago/templates',
+            'app_rutas_asignaciones/templates',
         ],
       
         'APP_DIRS': True,
