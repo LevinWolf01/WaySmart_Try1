@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <title>Documentos</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #fff;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: #222;
-            text-align: center;
-        }
+        body { font-family: Arial, sans-serif; background: #fff; color: #333; margin: 0; padding: 20px; }
+        h1, h2 { text-align: center; color: #222; }
+        form, table { width: min(900px, 100%); margin: 20px auto; }
+        form { box-sizing: border-box; background: #f4f4f4; padding: 20px; border: 1px solid #ddd; }
+        .campo { margin-bottom: 14px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { box-sizing: border-box; width: 100%; padding: 9px; }
+        .errorlist { color: #b00020; margin: 5px 0; padding-left: 20px; }
+        button { padding: 10px 16px; background: #222; color: #fff; border: 0; cursor: pointer; }
+        .error-general { color: #b00020; }
         table {
-            width: 90%;
-            margin: 20px auto;
             border-collapse: collapse;
             background: #fff;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -27,22 +24,58 @@
             padding: 10px;
             text-align: center;
         }
-        th {
-            background: #222;
-            color: #fff;
-        }
+        th { background: #222; color: #fff; }
         tr:nth-child(even) {
             background: #f9f9f9;
         }
     </style>
 </head>
 <body>
-    <h1>Lista de Documentos</h1>
+    <h1>Documentos</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="campo">
+            {{ form.tipo_documento.errors }}
+            <label for="{{ form.tipo_documento.id_for_label }}">Tipo de documento</label>
+            {{ form.tipo_documento }}
+        </div>
+        <div class="campo">
+            {{ form.url_archivo.errors }}
+            <label for="{{ form.url_archivo.id_for_label }}">URL del archivo</label>
+            {{ form.url_archivo }}
+        </div>
+        <div class="campo">
+            {{ form.estado.errors }}
+            <label for="{{ form.estado.id_for_label }}">Estado</label>
+            {{ form.estado }}
+        </div>
+        <div class="campo">
+            {{ form.usuario.errors }}
+            <label for="{{ form.usuario.id_for_label }}">Usuario</label>
+            {{ form.usuario }}
+        </div>
+        <div class="campo">
+            {{ form.entidad_tipo.errors }}
+            <label for="{{ form.entidad_tipo.id_for_label }}">Tipo de entidad</label>
+            {{ form.entidad_tipo }}
+        </div>
+        <div class="campo">
+            {{ form.entidad_id.errors }}
+            <label for="{{ form.entidad_id.id_for_label }}">ID de entidad (opcional)</label>
+            {{ form.entidad_id }}
+        </div>
+        <button type="submit">Guardar documento</button>
+    </form>
+    {% if form.errors %}
+        <p class="error-general">Revisa los datos del formulario.</p>
+    {% endif %}
+    <h2>Documentos registrados</h2>
     <table>
         <thead>
             <tr>
-                <th>Título</th>
                 <th>Tipo</th>
+                <th>Archivo</th>
                 <th>Fecha Subida</th>
                 <th>Estado</th>
                 <th>Usuario</th>
@@ -55,12 +88,10 @@
                 <td>{{ documento.url_archivo }}</td>
                 <td>{{ documento.fecha_subida }}</td>
                 <td>{{ documento.estado }}</td>
-                <td>{{ documento.usuario.email }}</td>
+                <td>{{ documento.usuario.email|default:"Sin usuario" }}</td>
             </tr>
             {% empty %}
-            <tr>
-                <td colspan="5">No hay documentos registrados</td>
-            </tr>
+            <tr><td colspan="5">No hay documentos registrados</td></tr>
             {% endfor %}
         </tbody>
     </table>
