@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; margin: 0; padding: 20px; }
+        h1, h2 { text-align: center; color: #0055aa; }
+        form, table { width: min(800px, 100%); margin: 20px auto; }
+        form { box-sizing: border-box; background: #fff; padding: 20px; border: 1px solid #ddd; }
+        .campo { margin-bottom: 14px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { box-sizing: border-box; width: 100%; padding: 9px; }
+        .errorlist { color: #b00020; margin: 5px 0; padding-left: 20px; }
+        button { padding: 10px 16px; background: #0055aa; color: #fff; border: 0; cursor: pointer; }
+        .error-general { color: #b00020; }
+        table {
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th { background: #0055aa; color: #fff; }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Usuarios</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="campo">
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}">Correo electrónico</label>
+            {{ form.email }}
+        </div>
+        <div class="campo">
+            {{ form.contraseña.errors }}
+            <label for="{{ form.contraseña.id_for_label }}">Contraseña</label>
+            {{ form.contraseña }}
+        </div>
+        <div class="campo">
+            {{ form.rol.errors }}
+            <label for="{{ form.rol.id_for_label }}">Rol</label>
+            {{ form.rol }}
+        </div>
+        <div class="campo">
+            {{ form.estado.errors }}
+            <label for="{{ form.estado.id_for_label }}">Estado</label>
+            {{ form.estado }}
+        </div>
+        <button type="submit">Guardar usuario</button>
+    </form>
+    {% if form.errors %}
+        <p class="error-general">Revisa los datos del formulario.</p>
+    {% endif %}
+    <h2>Usuarios registrados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Fecha Creación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.rol }}</td>
+                <td>{{ usuario.estado }}</td>
+                <td>{{ usuario.fecha_creacion }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No hay usuarios registrados</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
