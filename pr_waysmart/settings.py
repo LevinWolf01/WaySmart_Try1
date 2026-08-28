@@ -74,6 +74,7 @@ TEMPLATES = [
             'app_rutas_asignaciones/templates',
             'app_modelo/templates',
             'app_repartidor/templates',
+            'app_PagosEntrega_TipoPago/templates',
         ],
         
         'APP_DIRS': True,
