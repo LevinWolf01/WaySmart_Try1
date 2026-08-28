@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de Pagos - WaySmart</title>
+    <link rel="stylesheet" href="{% static 'app_PagosEntrega_TipoPago/css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="header-title">Módulo de Pagos y Formas de Pago</h1>
+
+    <!-- 1. Registrar Tipo de Pago -->
+    <div class="card">
+        <h2 class="card-title">1. Registrar Tipo de Pago</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="efectivo">Monto Efectivo:</label>
+                    <input type="number" step="0.01" id="efectivo" name="efectivo" placeholder="0.00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="transferencia">Monto Transferencia:</label>
+                    <input type="number" step="0.01" id="transferencia" name="transferencia" placeholder="0.00">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button type="submit" name="btn_tipo_pago" class="btn btn-waysmart">Guardar Tipo de Pago</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 2. Registrar Pago de Entrega -->
+    <div class="card">
+        <h2 class="card-title">2. Registrar Pago de Entrega</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="tipo_de_pago">Tipo de Pago (ID):</label>
+                    <select id="tipo_de_pago" name="tipo_de_pago" required>
+                        {% for tipo in tipos_pago %}
+                            <option value="{{ tipo.id_tipo_de_pago }}">
+                                ID: {{ tipo.id_tipo_de_pago }} (Efectivo: ${{ tipo.efectivo|default:"0" }} | Transf: ${{ tipo.transferencia|default:"0" }})
+                            </option>
+                        {% empty %}
+                            <option value="">No hay tipos registrados</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="valor_total">Valor Total:</label>
+                    <input type="number" step="0.01" id="valor_total" name="valor_total" placeholder="0.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="metodo_pago">Método de Pago:</label>
+                    <select id="metodo_pago" name="metodo_pago" required>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Transferencia">Transferencia</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_de_pago">Fecha de Pago:</label>
+                    <input type="datetime-local" id="fecha_de_pago" name="fecha_de_pago" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="evidencia_url">URL Evidencia:</label>
+                    <input type="text" id="evidencia_url" name="evidencia_url" maxlength="255" placeholder="https://ejemplo.com/comprobante.jpg">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado" required>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Completado">Completado</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" name="btn_pago_entrega" class="btn btn-waysmart">Guardar Pago Entrega</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'app_PagosEntrega_TipoPago/js/main.js' %}"></script>
+</body>
+</html>

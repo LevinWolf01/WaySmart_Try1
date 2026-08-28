@@ -1,11 +1,11 @@
 # Entornos virtuales (cubre los nombres más comunes)
+v_waysmart/
 venv/
 .venv/
 env/
 ENV/
 env.bak/
 venv.bak/
-
 # Caché de Python
 __pycache__/
 *.pyc
