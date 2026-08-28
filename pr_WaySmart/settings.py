@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'seguimiento_geolocalizacion',
-    'pagos_repartidor',
+    'app_PagoRepartidor_SeguimientoGeo'
 ]
 
 MIDDLEWARE = [

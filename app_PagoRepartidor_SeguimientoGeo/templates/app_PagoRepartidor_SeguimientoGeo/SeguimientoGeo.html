@@ -1,4 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Seguimiento geográfico</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'app_PagoRepartidor_SeguimientoGeo/css/estilos.css' %}"
+    >
+</head>
+
 <body>
+{% if messages %}
+    {% for message in messages %}
+        <div class="mensaje-exito">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
     <div class="container">
 
         <h1>Seguimientos de Geolocalización</h1>

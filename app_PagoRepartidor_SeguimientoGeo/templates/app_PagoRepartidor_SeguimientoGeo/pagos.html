@@ -7,9 +7,16 @@
 
     <title>Pagos del repartidor</title>
 
-    <link rel="stylesheet" href="{% static 'pagos_repartidor/css/pagos.css' %}">
+<link rel="stylesheet" href="{% static 'app_PagoRepartidor_SeguimientoGeo/css/estilos.css' %}">
 </head>
 <body>
+{% if messages %}
+    {% for message in messages %}
+        <div class="mensaje-exito">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
     <div class="container">
 
         <h1>Pagos del repartidor</h1>
@@ -89,6 +96,5 @@
         <p>No hay pagos registrados.</p>
     {% endfor %}
 </div>
-<script src="{% static 'pagos_repartidor/js/pagos.js' %}"></script>
 </body>
 </html>
