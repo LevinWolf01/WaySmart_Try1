@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_vehiculos_colores/css/estilos.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <h1>WaySmart</h1>
+            <nav>
+                <a href="{% url 'app_vehiculos_colores:colores' %}">
+                    Colores
+                </a>
+                <a href="{% url 'app_vehiculos_colores:vehiculos' %}">
+                    Vehículos
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-title">
+            <span class="eyebrow">Catálogo</span>
+            <h2>{{ titulo }}</h2>
+            <p>Registra las cantidades asociadas a cada color.</p>
+        </section>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <section class="card">
+            <h3>Nuevo registro</h3>
+
+            <form method="post" class="form-grid">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+
+                        {% for error in field.errors %}
+                            <small class="error">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        Guardar color
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="card">
+            <div class="section-heading">
+                <h3>Colores guardados</h3>
+                <span class="badge">{{ colores|length }} registros</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Rojo</th>
+                            <th>Amarillo</th>
+                            <th>Verde</th>
+                            <th>Negro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for color in colores %}
+                            <tr>
+                                <td>{{ color.id_colores }}</td>
+                                <td>{{ color.rojo }}</td>
+                                <td>{{ color.amarillo }}</td>
+                                <td>{{ color.verde }}</td>
+                                <td>{{ color.negro }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5" class="empty">
+                                    No hay registros guardados.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

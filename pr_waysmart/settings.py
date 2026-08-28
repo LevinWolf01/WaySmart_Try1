@@ -56,7 +56,8 @@ ROOT_URLCONF = 'pr_waysmart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['pr_waysmart/templates'],
+        'DIRS': ['pr_waysmart/templates',
+                 'app_vehiculos_colores/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

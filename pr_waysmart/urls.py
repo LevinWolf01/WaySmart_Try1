@@ -1,13 +1,14 @@
 from django.contrib import admin
-from django.http import HttpResponse
-from django.urls import path, include
-from .import views
+from django.urls import include, path
 from pr_waysmart import views
 
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path('waysmart/', views.fn_inicio),
-    path('vehiculos-colores/', include('app_vehiculos_colores.urls')),
-    ]
+    path("waysmart/",include("app_vehiculos_colores.urls")),
+]
+
 
 
