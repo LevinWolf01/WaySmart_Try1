@@ -4,7 +4,6 @@ from django.views.generic import RedirectView
 from pr_waysmart import views
 
 urlpatterns = [
-    path('', views.fn_inicio, name='inicio'),
     path('admin/', admin.site.urls),
     path('waysmart/', views.fn_inicio),
     path('', RedirectView.as_view(url='/waysmart/', permanent=False)),
