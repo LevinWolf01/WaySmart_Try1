@@ -37,16 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    #Apps del Proyecto:
-    'pr_waysmart',
-    'app_empresa_convenios',
-    'app_destinos_servicios',
-    'app_PagosEntrega_TipoPago',
-    'app_rutas_asignaciones',   
-    'app_modelo',
-    'app_repartidor',
-    'app_PagoRepartidor_SeguimientoGeo',
+    'app_PagoRepartidor_SeguimientoGeo'
 ]
 
 MIDDLEWARE = [
@@ -64,18 +55,7 @@ ROOT_URLCONF = 'pr_WaySmart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'pr_waysmart' / 'templates',
-            BASE_DIR / 'app_destinos_servicios' / 'templates',
-            BASE_DIR / 'templates',
-            'pr_waysmart/templates',
-            'app_empresa_convenios/templates/app_empresa_convenios',
-            'app_PagosEntrega_TipoPago/templates',
-            'app_rutas_asignaciones/templates',
-            'app_modelo/templates',
-            'app_repartidor/templates',
-        ],
-        
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

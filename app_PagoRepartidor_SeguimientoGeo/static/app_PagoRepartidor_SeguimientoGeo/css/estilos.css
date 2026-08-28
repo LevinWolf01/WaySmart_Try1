@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #111827;
+    background-color: #eaf2fb;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+h1 {
+    color: #0b2d4d;
+    text-align: center;
+}
+
+h2 {
+    color: #123f67;
+}
+
+.tarjeta {
+    background-color: #ffffff;
+    margin: 20px 0;
+    padding: 20px;
+    border-left: 6px solid #1769aa;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(11, 45, 77, 0.25);
+}
+
+.info p {
+    color: #1f2937;
+}
+
+.mensaje-exito {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    color: #ffffff;
+    background-color: #155a91;
+    border: 2px solid #0b2d4d;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.estado {
+    display: inline-block;
+    padding: 6px 12px;
+    color: #ffffff;
+    background-color: #1769aa;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.acciones {
+    margin-top: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 16px;
+    color: #ffffff;
+    background-color: #0b2d4d;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #1769aa;
+}
+
+.btn-eliminar {
+    background-color: #111827;
+}
+
+.btn-eliminar:hover {
+    background-color: #374151;
+}
+
+.mensaje {
+    padding: 15px;
+    color: #111827;
+    background-color: #ffffff;
+    border: 1px solid #1769aa;
+    text-align: center;
+}

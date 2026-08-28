@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del seguimiento</title>
+    <link
+        rel="stylesheet"
+        href="{% static 'app_PagoRepartidor_SeguimientoGeo/css/estilos.css' %}"
+    >
+</head>
+<body>
+    <div class="container">
+        <h1>Detalle del seguimiento</h1>
+
+        <div class="tarjeta">
+            <p>ID del seguimiento: {{ seguimiento.id_Seguimiento }}</p>
+            <p>Repartidor: {{ seguimiento.id_Repartidor }}</p>
+            <p>Latitud: {{ seguimiento.latitud }}</p>
+            <p>Longitud: {{ seguimiento.longitud }}</p>
+            <p>Velocidad: {{ seguimiento.velocidad }} km/h</p>
+            <p>Fecha y hora: {{ seguimiento.timestamp }}</p>
+
+            <a href="{% url 'seguimientogeo' %}" class="btn">
+                Volver
+            </a>
+        </div>
+    </div>
+</body>
+</html>
