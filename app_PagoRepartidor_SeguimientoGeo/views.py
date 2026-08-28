@@ -1,6 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render
-
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Pagos_repartidor, Seguimiento_Geolocalizacion
 
 
@@ -50,3 +49,49 @@ def seguimientogeo(request):
         'app_PagoRepartidor_SeguimientoGeo/SeguimientoGeo.html',
         {'seguimientos': lista_seguimientos},
     )
+
+def detalle_pago(request, id):
+    pago = get_object_or_404(Pagos_repartidor, id_pagos=id)
+
+    return render(
+        request,
+        'app_PagoRepartidor_SeguimientoGeo/detalle_pago.html',
+        {'pago': pago},
+    )
+
+
+def eliminar_pago(request, id):
+    if request.method == 'POST':
+        pago = get_object_or_404(Pagos_repartidor, id_pagos=id)
+        pago.delete()
+        messages.success(request, 'Pago eliminado correctamente')
+
+    return redirect('pago')
+
+
+def detalle_seguimiento(request, id):
+    seguimiento = get_object_or_404(
+        Seguimiento_Geolocalizacion,
+        id_Seguimiento=id,
+    )
+
+    return render(
+        request,
+        'app_PagoRepartidor_SeguimientoGeo/detalle_seguimiento.html',
+        {'seguimiento': seguimiento},
+    )
+
+
+def eliminar_seguimiento(request, id):
+    if request.method == 'POST':
+        seguimiento = get_object_or_404(
+            Seguimiento_Geolocalizacion,
+            id_Seguimiento=id,
+        )
+        seguimiento.delete()
+        messages.success(
+            request,
+            'Seguimiento eliminado correctamente',
+        )
+
+    return redirect('seguimientogeo')

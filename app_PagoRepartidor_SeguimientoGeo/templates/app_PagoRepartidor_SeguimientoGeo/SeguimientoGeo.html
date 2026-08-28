@@ -65,22 +65,22 @@
                     <div class="acciones">
 
                         <!-- Nota: Ajusta los nombres de las URLs en tus rutas si usas detalle o eliminar -->
-                        <a href="#" class="btn">
+                        <a
+                            href="{% url 'detalle_seguimiento' seguimiento.id_Seguimiento %}"
+                            class="btn"
+                        >
                             Ver detalle
                         </a>
 
                         <form
-                            action="#"
+                            action="{% url 'eliminar_seguimiento' seguimiento.id_Seguimiento %}"
                             method="post"
                             style="display: inline;"
                         >
-
                             {% csrf_token %}
-
                             <button type="submit" class="btn btn-eliminar">
                                 Eliminar
                             </button>
-
                         </form>
 
                     </div>
