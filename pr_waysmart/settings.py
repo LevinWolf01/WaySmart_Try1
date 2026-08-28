@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
-import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-28*rkw^kpvz@w-nyf)2jr%g&r335wb6-3#g-x#ra-%*w4_zj$2'
+SECRET_KEY = 'django-insecure-69zln)bdi-rbglgt5pdmhm0i*0%hho!kolh6))5gupzvy6!^s&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     #Apps del Proyecto:
     'pr_waysmart',
     'app_empresa_convenios',
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'app_rutas_asignaciones',   
     'app_modelo',
     'app_repartidor',
-
+    'app_PagoRepartidor_SeguimientoGeo',
 ]
 
 MIDDLEWARE = [
@@ -67,14 +67,16 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'pr_waysmart' / 'templates',
             BASE_DIR / 'app_destinos_servicios' / 'templates',
+            BASE_DIR / 'templates',
             'pr_waysmart/templates',
             'app_empresa_convenios/templates/app_empresa_convenios',
             'app_PagosEntrega_TipoPago/templates',
             'app_rutas_asignaciones/templates',
             'app_modelo/templates',
             'app_repartidor/templates',
+            'app_PagosEntrega_TipoPago/templates',
         ],
-      
+        
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,17 +138,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'app_PagosEntrega_TipoPago', 'static'),
-]
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
@@ -156,9 +147,3 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
-
-
-STATICFILES_DIRS = [
-    'app_modelo/static',
-    'app_repartidor/static',
-]

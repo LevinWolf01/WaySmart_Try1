@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del pago</title>
+    <link
+        rel="stylesheet"
+        href="{% static 'app_PagoRepartidor_SeguimientoGeo/css/estilos.css' %}"
+    >
+</head>
+<body>
+    <div class="container">
+        <h1>Detalle del pago</h1>
+
+        <div class="tarjeta">
+            <p>ID del pago: {{ pago.id_pagos }}</p>
+            <p>Repartidor: {{ pago.id_Repartidor }}</p>
+            <p>Total generado: ${{ pago.monto_total_generado }}</p>
+            <p>Comisión: ${{ pago.comision_plataforma }}</p>
+            <p>Monto neto: ${{ pago.monto_neto }}</p>
+            <p>Fecha: {{ pago.fecha_pago }}</p>
+            <p>Estado: {{ pago.estado }}</p>
+
+            <a href="{% url 'pago' %}" class="btn">
+                Volver
+            </a>
+        </div>
+    </div>
+</body>
+</html>
