@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pr_WaySmart.urls'
+ROOT_URLCONF = 'pr_waysmart.urls'
 
 TEMPLATES = [
     {

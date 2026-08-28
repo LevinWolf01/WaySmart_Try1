@@ -1,5 +1,5 @@
 """
-WSGI config for pr_waysmart project.
+WSGI config for pr_WaySmart project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pr_waysmart.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pr_WaySmart.settings')
 
 application = get_wsgi_application()
