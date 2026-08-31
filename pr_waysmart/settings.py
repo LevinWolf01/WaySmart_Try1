@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'app_repartidor',
     'app_PagoRepartidor_SeguimientoGeo',
     'app_usuario_documento',
-]
+    'app_vehiculos_colores',
+    ]
 
    
 MIDDLEWARE = [
@@ -75,6 +76,7 @@ TEMPLATES = [
             'app_repartidor/templates',
             'app_PagosEntrega_TipoPago/templates',
             'app_usuario_documento/templates',
+            'app_vehiculos_colores/templates',
         ],
         
         'APP_DIRS': True,

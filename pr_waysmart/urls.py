@@ -14,8 +14,10 @@ urlpatterns = [
     path('waysmart/', include('app_empresa_convenios.urls')), 
     path('waysmart/', include('app_PagosEntrega_TipoPago.urls')),
     path('waysmart/', include('app_rutas_asignaciones.urls')),
+    path('waysmart/', include('app_usuario_documento.urls')),
+    path("waysmart/", include("app_vehiculos_colores.urls")),
+    
     path('waysmart/modelo/', include('app_modelo.urls')),
     path('waysmart/repartidor/', include('app_repartidor.urls')),
     path('', include('app_PagoRepartidor_SeguimientoGeo.urls')),
-    path('waysmart/', include('app_usuario_documento.urls')),
 ]
