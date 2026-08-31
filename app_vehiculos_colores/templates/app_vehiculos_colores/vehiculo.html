@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_vehiculos_colores/css/estilos.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <h1>WaySmart</h1>
+            <nav>
+                <a href="{% url 'app_vehiculos_colores:colores' %}">
+                    Colores
+                </a>
+                <a href="{% url 'app_vehiculos_colores:vehiculos' %}">
+                    Vehículos
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-title">
+            <span class="eyebrow">Administración</span>
+            <h2>{{ titulo }}</h2>
+            <p>Ingresa y consulta la información de los vehículos.</p>
+        </section>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <section class="card">
+            <h3>Nuevo vehículo</h3>
+
+            <form method="post" class="form-grid">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-group {% if field.name == 'observacion_rechazo' %}full-width{% endif %}">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {% if field.name == "activo" %}
+                            <div class="check-control">
+                                {{ field }}
+                                <span>Vehículo activo</span>
+                            </div>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+
+                        {% for error in field.errors %}
+                            <small class="error">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <div class="form-actions full-width">
+                    <button type="submit" class="btn btn-primary">
+                        Guardar vehículo
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="card">
+            <div class="section-heading">
+                <h3>Vehículos guardados</h3>
+                <span class="badge">{{ vehiculos|length }} registros</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Modelo</th>
+                            <th>Color</th>
+                            <th>Repartidor</th>
+                            <th>Tipo</th>
+                            <th>Marca</th>
+                            <th>Línea</th>
+                            <th>Placa</th>
+                            <th>Estado</th>
+                            <th>Activo</th>
+                            <th>Fecha validación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for vehiculo in vehiculos %}
+                            <tr>
+                                <td>{{ vehiculo.id_vehiculo }}</td>
+                                <td>{{ vehiculo.modelo }}</td>
+                                <td>{{ vehiculo.color }}</td>
+                                <td>{{ vehiculo.repartidor }}</td>
+                                <td>{{ vehiculo.get_tipo_display }}</td>
+                                <td>{{ vehiculo.marca }}</td>
+                                <td>{{ vehiculo.linea }}</td>
+                                <td><strong>{{ vehiculo.placa }}</strong></td>
+                                <td>
+                                    <span class="status status-{{ vehiculo.estado|lower }}">
+                                        {{ vehiculo.get_estado_display }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {% if vehiculo.activo %}
+                                        Sí
+                                    {% else %}
+                                        No
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ vehiculo.fecha_validacion|date:"d/m/Y H:i" }}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="11" class="empty">
+                                    No hay vehículos guardados.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
